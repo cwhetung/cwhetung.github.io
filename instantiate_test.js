@@ -1,7 +1,5 @@
-var results = [];
-var toDos = [];
-
 function checkCode() {
+  var results = [];
   var drawFunction = draw.toString();
 
   var classCalls = drawFunction.match(/new\s+Tree\(\s*\d+\s*,\s*\d+\s*\)/g);
