@@ -8,7 +8,7 @@ function checkCode() {
   if (classCalls.length > 1) {
     results.push("✓ Multiple trees instantiated");
   } else {
-    results.push("✗ You must instantiate multiples trees ");
+    results.push("✗ You must instantiate multiples trees. Such as, new Tree(x,y) ");
   }
 
   var variableSaves = drawFunction.match(
@@ -33,7 +33,7 @@ function checkCode() {
   if (drawCalls.filter((n) => n).length >= variableSaves.length) {
     results.push("✓ All trees are drawn.");
   } else {
-    results.push("✗ not all trees are drawn.");
+    results.push("✗ Not all trees are drawn. Call the draw() function on each");
   }
   console.log(results);
   document.getElementById("testResults").innerHTML = resultsHTML(results).join(
