@@ -5,7 +5,7 @@ function checkCode() {
   var drawFunction = draw.toString();
 
   var classCalls = drawFunction.match(/new\s+Tree\(\s*\d+\s*,\s*\d+\s*\)/g);
-  if (classCalls.length > 1) {
+  if (classCalls && classCalls.length > 1) {
     results.push("✓ Multiple trees instantiated");
   } else {
     results.push("✗ You must instantiate multiples trees. Such as, new Tree(x,y) ");
@@ -15,22 +15,22 @@ function checkCode() {
     /[a-zA-Z_$][a-zA-Z_$0-9]*\s*=\s*new\s+Tree\(\s*\d+\s*,\s*\d+\s*\)/g
   );
 
-  if (variableSaves.length > 1) {
+  if (variableSaves && variableSaves.length > 1) {
     results.push("✓ Multiple tree instances saved to variables");
   } else {
     results.push("✗ You must save your Tree instances to variables");
   }
 
-  var drawCalls = variableSaves.map((m) => {
+  var drawCalls = variableSaves ? variableSaves.map((m) => {
     var varName = m.match(
       /([a-zA-Z_$][a-zA-Z_$0-9]*)\s*=\s*new\s+Tree\(\s*\d+\s*,\s*\d+\s*\)/
     )[1];
     var matcher = new RegExp(`${varName}.draw\\(\\)`);
 
     return matcher.exec(drawFunction) && matcher.exec(drawFunction)[0];
-  });
+  }) : [];
 
-  if (drawCalls.filter((n) => n).length >= variableSaves.length) {
+  if (drawCalls && drawCalls.filter((n) => n).length >= variableSaves.length) {
     results.push("✓ All trees are drawn.");
   } else {
     results.push("✗ Not all trees are drawn. Call the draw() function on each");
