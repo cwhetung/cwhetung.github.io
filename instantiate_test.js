@@ -30,7 +30,7 @@ function checkCode() {
     return matcher.exec(drawFunction) && matcher.exec(drawFunction)[0];
   }) : [];
 
-  if (drawCalls && drawCalls.filter((n) => n).length >= variableSaves.length) {
+  if (drawCalls && variableSaves && drawCalls.filter((n) => n).length >= variableSaves.length) {
     results.push("✓ All trees are drawn.");
   } else {
     results.push("✗ Not all trees are drawn. Call the draw() function on each");
